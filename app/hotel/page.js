@@ -2,7 +2,7 @@ import HotelList from "@/components/hotel/HotelList";
 import Filter from "@/components/search/Filter";
 import Search from "@/components/search/Search";
 
-export default function Hotel() {
+export default async function Hotel() {
     return (
         <>
             {/* Search-Modify-Area */}
