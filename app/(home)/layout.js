@@ -1,7 +1,6 @@
 import { dbConnect } from "@/database/dbConnect";
-import "./globals.css";
+import "../globals.css";
 import Navbar from "@/components/Navbar";
-
 
 export const metadata = {
   title: "Create Next App",
@@ -14,7 +13,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body>
         <main>
-          <Navbar />
+          <Navbar mode={true} />
         </main>
         {children}
       </body>
