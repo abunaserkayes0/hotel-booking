@@ -1,7 +1,9 @@
 import { auth } from "@/libs/auth";
 import Image from "next/image";
 import Link from "next/link";
+import SignOut from "./SignOut";
 const Navbar = async ({ mode }) => {
+  // Fetch user session from NextAuth.js
   const session = await auth();
   console.log(session);
 
@@ -29,11 +31,9 @@ const Navbar = async ({ mode }) => {
           </li>
 
           <li>
-            {session?.user?.id ? (
+            {session?.user ? (
               <div className="flex items-center justify-center gap-4">
-                <Link href="/logout" className="login">
-                  LogOut
-                </Link>
+                <SignOut />
                 <span>
                   <Image
                     className="w-8 h-8 border rounded-full"
