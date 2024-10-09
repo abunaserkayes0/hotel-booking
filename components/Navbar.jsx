@@ -29,9 +29,26 @@ const Navbar = async ({ mode }) => {
           </li>
 
           <li>
-            <Link href="/login" className="login">
-              Login
-            </Link>
+            {session?.user?.id ? (
+              <div className="flex items-center justify-center gap-4">
+                <Link href="/logout" className="login">
+                  LogOut
+                </Link>
+                <span>
+                  <Image
+                    className="w-8 h-8 border rounded-full"
+                    src={session?.user?.image}
+                    alt={session?.user?.name}
+                    width={20}
+                    height={20}
+                  />
+                </span>
+              </div>
+            ) : (
+              <Link href="/login" className="login">
+                Login
+              </Link>
+            )}
           </li>
         </ul>
       )}
