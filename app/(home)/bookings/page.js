@@ -1,10 +1,10 @@
 import PastBooking from "@/components/user/booking/PastBooking";
 import UpcomingBooking from "@/components/user/booking/UpcomingBooking";
 import ProfileInfo from "@/components/user/ProfileInfo";
+import handelPrivetRoute from "@/libs/handelPrivetRoute";
 
 export default async function Booking() {
-
-
+    await handelPrivetRoute();
     return (
         <>
             <section className="mt-[100px]">
