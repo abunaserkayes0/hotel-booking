@@ -1,4 +1,7 @@
-const PaymentForm = () => {
+import handelPrivetRoute from "@/libs/handelPrivetRoute";
+
+const PaymentForm = async () => {
+  await handelPrivetRoute();
   return (
     <form className="my-8">
       <div className="my-4 space-y-2">

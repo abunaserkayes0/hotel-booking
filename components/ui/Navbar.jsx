@@ -5,7 +5,7 @@ import SignOut from "./SignOut";
 const Navbar = async ({ mode }) => {
   // Fetch user session from NextAuth.js
   const session = await auth();
-  console.log(session);
+  // console.log(session);
 
   return (
     <nav>
