@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const usersModels = new Schema({
+
     name: {
         type: String,
         required: true

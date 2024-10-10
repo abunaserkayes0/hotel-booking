@@ -11,6 +11,7 @@ export const replaceIdByArray = (array) => {
 
 
 export const replaceIdByObject = (obj) => {
-    const { _id, ...updatedObject } = { ...obj, id: obj._id.toString() };
+    const { _id, ...updatedObject } = { ...obj, id: obj?._id?.toString() };
     return updatedObject;
 }
+
