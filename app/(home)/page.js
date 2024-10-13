@@ -1,6 +1,7 @@
 import Search from "@/components/search/Search";
 
-export default function Home() {
+export default async function Home() {
+
   return (
     <>
       <section

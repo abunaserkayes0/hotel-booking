@@ -3,8 +3,6 @@ import Image from "next/image";
 const Gallery = ({ gallery }) => {
   const galleryCollection = [...gallery];
   const firstGalleryImg = galleryCollection.shift();
-  console.log(firstGalleryImg);
-
   return (
     <section className="container">
       <div className="grid grid-cols-2 imageshowCase">

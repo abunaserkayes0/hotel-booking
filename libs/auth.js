@@ -11,7 +11,7 @@ export const { auth, signIn, signOut, handlers: { GET, POST } } = NextAuth({
     adapter: MongoDBAdapter(client, { databaseName: process.env.ENVIRONMENT }),
     session: {
         strategy: 'jwt',
-        
+
     },
     providers: [
         Credentials({
