@@ -21,7 +21,8 @@ const RegistrationForm = () => {
     }
 
     const user = {
-      name: `${fname} ${lname}`,
+      fname,
+      lname,
       email,
       password,
     };

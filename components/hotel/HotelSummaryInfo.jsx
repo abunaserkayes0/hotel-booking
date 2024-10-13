@@ -1,29 +1,55 @@
-const HotelSummaryInfo = ({ fromListPage }) => {
+import Link from "next/link";
+import HotelRatings from "./HotelRatings";
+import HotelReviews from "./HotelReviews";
+
+const HotelSummaryInfo = ({
+  fromListPage,
+  hotelInfo,
+  destination,
+  checkin,
+  checkout,
+}) => {
+  let params = "";
+
+  if (checkin && checkout) {
+    params = `?destination=${destination}&checkin=${checkin}&checkout=${checkout}`;
+  }
+
   return (
     <>
       <div className={fromListPage ? "flex-1" : "flex-1 container"}>
         <h2
           className={fromListPage ? "font-bold text-lg" : "font-bold text-2xl"}
         >
-          Effotel By Sayaji Jaipur
+          {hotelInfo?.name}
         </h2>
-        <p>📍 Kolkata</p>
-        <div className="flex gap-2 items-center my-4">
-          <div className="bg-primary w-[35px] h-[35px] rounded-sm text-white grid place-items-center font-bold">
-            5.3
-          </div>
-          <span className="font-medium">Very Good</span>
-          <span>232 Reviews</span>
-        </div>
+        <p>📍 {hotelInfo?.city}</p>
+        <HotelRatings hotelId={hotelInfo?.id} />
+        <HotelReviews hotelId={hotelInfo?.id} />
+        <br />
+        {hotelInfo.isBooked && <span className="font-semibold">Sold Out</span>}
       </div>
 
       <div className="flex flex-col gap-2 items-end justify-center">
-        <h2 className="text-2xl font-bold text-right">$124/night</h2>
-        <p className=" text-right">Per Night for 4 Rooms</p>
+        <h2 className="text-2xl font-bold text-right">
+          ${(hotelInfo?.lowRate + hotelInfo?.highRate) / 2}/night
+        </h2>
+        <p className=" text-right text-red-600">
+          Per Night for {hotelInfo?.propertyCategory} Rooms
+        </p>
         {fromListPage ? (
-          <button className="btn-primary ">Details</button>
+          <Link
+            href={`/hotels/${hotelInfo.id}${params}`}
+            className="btn-primary "
+          >
+            Details
+          </Link>
         ) : (
-          <button className="btn-primary ">Book</button>
+          <button
+            className={hotelInfo.isBooked ? "btn-disabled" : "btn-primary"}
+          >
+            Book
+          </button>
         )}
       </div>
     </>
