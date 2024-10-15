@@ -6,4 +6,6 @@ export default async function handelPrivetRoute() {
     if (!session) {
         redirect('/login')
     }
+
+    return session.user;
 }

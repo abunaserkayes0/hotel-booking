@@ -11,6 +11,7 @@ const HotelCard = ({ hotelInfo, destination, checkin, checkout }) => {
         height={162}
         alt="Hotel Info image"
       />
+     
       <HotelSummaryInfo
         fromListPage={true}
         hotelInfo={hotelInfo}
