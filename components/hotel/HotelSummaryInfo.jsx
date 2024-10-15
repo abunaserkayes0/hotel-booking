@@ -9,10 +9,10 @@ const HotelSummaryInfo = ({
   checkin,
   checkout,
 }) => {
-  let params = "";
+  let paramsSearch = "";
 
   if (checkin && checkout) {
-    params = `?destination=${destination}&checkin=${checkin}&checkout=${checkout}`;
+    paramsSearch = `?destination=${destination}&checkin=${checkin}&checkout=${checkout}`;
   }
 
   return (
@@ -39,17 +39,22 @@ const HotelSummaryInfo = ({
         </p>
         {fromListPage ? (
           <Link
-            href={`/hotels/${hotelInfo.id}${params}`}
+            href={`/hotels/${hotelInfo.id}${paramsSearch}`}
             className="btn-primary "
           >
             Details
           </Link>
         ) : (
-          <button
-            className={hotelInfo.isBooked ? "btn-disabled" : "btn-primary"}
+          <Link
+            href={
+              hotelInfo?.isBooked
+                ? "#"
+                : `/hotels/${hotelInfo.id}/payment${paramsSearch}`
+            }
+            className={hotelInfo?.isBooked ? "btn-disabled" : "btn-primary"}
           >
             Book
-          </button>
+          </Link>
         )}
       </div>
     </>

@@ -11,7 +11,7 @@ export const getAllHotels = async (destination, checkin, checkout) => {
     if (checkin && checkout) {
         allHotels = await Promise.all(
             allHotels.map(async (hotel) => {
-                const found = await findBookings(hotel._id, checkin, checkout);
+                const found = await findBookings(hotel?._id, checkin, checkout);
                 if (found) {
                     hotel['isBooked'] = true;
                 } else {
@@ -31,7 +31,7 @@ export const getHotelDetailsById = async (hotelId, checkin, checkout) => {
     const hotel = await hotelsModel.findById(hotelId).lean();
 
     if (checkin && checkout) {
-        const found = await findBookings(hotel._id, checkin, checkout);
+        const found = await findBookings(hotel?._id, checkin, checkout);
         if (found) {
             hotel['isBooked'] = true;
         } else {
