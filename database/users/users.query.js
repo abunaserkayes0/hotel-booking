@@ -6,7 +6,7 @@ export const getAllUsers = async () => {
     return replaceIdByArray(allUsers)
 }
 
-export const getUserById = async (email) => {
+export const getByUserEmail = async (email) => {
     const user = await usersModel.find({ email: email }).lean();
     return replaceIdByObject(user[0])
 }

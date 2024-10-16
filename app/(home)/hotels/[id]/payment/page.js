@@ -1,13 +1,14 @@
 import handelPrivetRoute from "@/libs/handelPrivetRoute";
 import PaymentForm from "@/components/payment/PaymentForm";
-import { getUserById } from "@/database/users/users.query";
+import { getByUserEmail } from "@/database/users/users.query";
 import { getHotelDetailsById } from "@/database/hotels/hotels.query";
 import getDateDifference from "@/utils/datediffernce";
 
 
 export default async function Payment({ params: { id }, searchParams: { destination, checkin, checkout } }) {
-    const loggedInUser = await handelPrivetRoute();
-    const userId = await getUserById(loggedInUser?.email);
+
+    const currentUserInfo = await handelPrivetRoute();
+    const loggedInUser = await getByUserEmail(currentUserInfo?.email);
     const hotelInfo = await getHotelDetailsById(id, checkin, checkout);
 
     const hasCheckinAndCheckout = checkin && checkout;
