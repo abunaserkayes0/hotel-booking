@@ -1,7 +1,6 @@
 "use client";
-
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const PaymentForm = async ({ loggedInUser, hotelInfo, checkin, checkout }) => {
   const [error, setError] = useState("");
@@ -24,21 +23,21 @@ const PaymentForm = async ({ loggedInUser, hotelInfo, checkin, checkout }) => {
         checkout,
       };
 
-      const response = fetch(`/api/auth/payment`, {
+      const response = await fetch("/api/auth/payment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
-      response.status === 201 && router.push("/bookings");
+      response.status == 201 && router.push("/bookings");
     } catch (error) {
       setError(error.message);
     }
   }
 
   return (
-    <div>
+    <>
       {error && <p className="text-red-300">{error.message}</p>}
       <form className="my-8" onSubmit={onSubmit}>
         <div className="my-4 space-y-2">
@@ -120,7 +119,7 @@ const PaymentForm = async ({ loggedInUser, hotelInfo, checkin, checkout }) => {
           Pay Now (${(hotelInfo?.highRate + hotelInfo?.lowRate) / 2})
         </button>
       </form>
-    </div>
+    </>
   );
 };
 

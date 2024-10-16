@@ -16,8 +16,7 @@ export const POST = async (request) => {
 
     try {
         await bookingsModel.create(payload);
-        return new NextResponse({
-            message: "Sucessfully created",
+        return new NextResponse("Sucessfully created", {
             status: 201,
         })
 

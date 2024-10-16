@@ -17,3 +17,8 @@ export const findBookings = async (hotelId, checkin, checkout) => {
     })
     return foundBookings;
 }
+
+export const getBookingByUserId = async (userId) => {
+    const booking = await bookingsModel.find({ userId: userId }).lean();
+    return replaceIdByArray(booking);
+}
