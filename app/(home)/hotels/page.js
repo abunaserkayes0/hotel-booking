@@ -1,8 +1,10 @@
 import HotelList from "@/components/hotel/HotelList";
 import Filter from "@/components/search/Filter";
 import Search from "@/components/search/Search";
+import { refineItems } from "@/utils/refineCategory";
 
-export default async function Hotel({ searchParams: { destination, checkin, checkout } }) {
+export default async function Hotel({ searchParams: { destination, checkin, checkout, category, priceRange, priceQuality } }) {
+
     return (
         <>
             {/* Search-Modify-Area */}
@@ -15,7 +17,7 @@ export default async function Hotel({ searchParams: { destination, checkin, chec
             <section className="py-12">
                 <div className="container grid grid-cols-12">
                     <Filter />
-                    <HotelList destination={destination} checkin={checkin} checkout={checkout} />
+                    <HotelList destination={destination} checkin={checkin} checkout={checkout} category={refineItems(category)} priceRange={refineItems(priceRange)} priceQuality={refineItems(priceQuality)} />
                 </div>
             </section>
         </>

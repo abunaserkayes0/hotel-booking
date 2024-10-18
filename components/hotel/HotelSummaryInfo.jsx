@@ -26,6 +26,9 @@ const HotelSummaryInfo = ({
         <p>📍 {hotelInfo?.city}</p>
         <HotelRatings hotelId={hotelInfo?.id} />
         <HotelReviews hotelId={hotelInfo?.id} />
+        <p className="text-green-600 font-bold">
+          {hotelInfo?.propertyCategory} Star Categories
+        </p>
         <br />
         {hotelInfo.isBooked && <span className="font-semibold">Sold Out</span>}
       </div>

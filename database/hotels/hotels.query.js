@@ -2,11 +2,35 @@ import { replaceIdByArray, replaceIdByObject } from "@/utils/replaceId";
 import hotelsModel from "./hotels.model"
 import { findBookings } from "../bookings/bookings.query";
 
-export const getAllHotels = async (destination, checkin, checkout) => {
+export const getAllHotels = async (destination, checkin, checkout, category, priceRange, priceQuality) => {
+
     const regex = new RegExp(destination, 'i');
     const hotelsByDestination = await hotelsModel.find({ city: { $regex: regex } }).select(["name", "city", "highRate", "lowRate", "thumbNailUrl", "propertyCategory"]).lean();
 
     let allHotels = hotelsByDestination;
+
+    const priceMatch = priceRange ? priceRange.split('|') : [];
+
+    if (priceMatch.length > 0) {
+        allHotels = allHotels.filter(hotel => {
+            return priceMatch.some((item) => {
+                const [minPrice, maxPrice] = item.split("-").map(Number);
+                return hotel.lowRate >= minPrice && hotel.highRate <= maxPrice;
+            });
+        });
+    }
+
+    const categoryMatch = category.split('|');
+    if (category) {
+        allHotels = allHotels.filter(hotel => { return categoryMatch.includes(hotel.propertyCategory.toString()) });
+    }
+
+    if (priceQuality == 'highToLow') {
+        allHotels = allHotels.sort((a, b) => b.highRate - a.highRate);
+    } else {
+        allHotels = allHotels.sort((a, b) => a.highRate - b.highRate);
+    }
+
 
     if (checkin && checkout) {
         allHotels = await Promise.all(

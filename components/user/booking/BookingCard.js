@@ -5,7 +5,6 @@ export default async function BookingCard({ booking }) {
 
     const hotelInfo = await getHotelDetailsById(booking?.hotelId);
     const days = getDateDifference(booking?.checkin, booking?.checkout)
-    console.log(days);
 
     return (
         <>
