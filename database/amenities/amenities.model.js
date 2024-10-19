@@ -2,19 +2,19 @@ import mongoose, { Schema } from 'mongoose';
 
 const amenitiesModel = new Schema({
     name: {
-        require: true,
-        type: String
+        type: String,
+        required: true
     },
     price: {
-        require: true,
+        required: true,
         type: Number,
     },
     instruction: {
-        require: false,
+        required: false,
         type: String,
     },
     hours: {
-        require: false,
+        required: false,
         type: String
     }
 

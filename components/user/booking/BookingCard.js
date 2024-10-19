@@ -16,7 +16,6 @@ export default async function BookingCard({ booking }) {
                         <p>Check Out: {booking?.checkout}</p>
                     </div>
                 </div>
-
                 <div>
                     <h3 className="text-xl font-semibold text-right">${((hotelInfo?.highRate + hotelInfo?.lowRate) / 2) * days}</h3>
                     <p className="text-sm text-gray-600">${(hotelInfo?.highRate + hotelInfo?.lowRate) / 2} per night x {days} days</p>
