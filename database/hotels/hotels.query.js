@@ -1,11 +1,12 @@
 import { replaceIdByArray, replaceIdByObject } from "@/utils/replaceId";
 import hotelsModel from "./hotels.model"
 import { findBookings } from "../bookings/bookings.query";
+import { getAmenitiesByName } from "../amenities/amenities.query";
 
-export const getAllHotels = async (destination, checkin, checkout, category, priceRange, priceQuality) => {
+export const getAllHotels = async (destination, checkin, checkout, category, priceRange, priceQuality, aminity) => {
 
     const regex = new RegExp(destination, 'i');
-    const hotelsByDestination = await hotelsModel.find({ city: { $regex: regex } }).select(["name", "city", "highRate", "lowRate", "thumbNailUrl", "propertyCategory"]).lean();
+    const hotelsByDestination = await hotelsModel.find({ city: { $regex: regex } }).select(["name", "city", "highRate", "lowRate", "thumbNailUrl", "propertyCategory", "amenities"]).lean();
 
     let allHotels = hotelsByDestination;
 
@@ -30,6 +31,17 @@ export const getAllHotels = async (destination, checkin, checkout, category, pri
     } else {
         allHotels = allHotels.sort((a, b) => a.highRate - b.highRate);
     }
+
+
+    const aminityMatch = aminity.split("|");
+
+    const amenitiesList = await getAmenitiesByName(aminity.toLowerCase().trim());
+
+    console.log(aminityMatch);
+    console.log(amenitiesList);
+    console.log(hotelsByDestination);
+
+
 
 
     if (checkin && checkout) {
