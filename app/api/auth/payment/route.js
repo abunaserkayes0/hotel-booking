@@ -3,8 +3,6 @@ import { dbConnect } from "@/database/dbConnect";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export const maxDuration = 300;
-
 export const POST = async (request) => {
 
     const { hotelId, userId, checkin, checkout } = await request.json();

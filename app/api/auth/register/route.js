@@ -3,8 +3,6 @@ import usersModel from '@/database/users/users.model';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 
-export const maxDuration = 300;
-
 export const POST = async (request) => {
 
     const { fname, lname, email, password } = await request.json();
