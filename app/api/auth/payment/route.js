@@ -2,6 +2,9 @@ import bookingsModel from "@/database/bookings/bookings.model";
 import { dbConnect } from "@/database/dbConnect";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
+
+export const dynamic = 'force-dynamic';
+
 export const POST = async (request) => {
 
     const { hotelId, userId, checkin, checkout } = await request.json();

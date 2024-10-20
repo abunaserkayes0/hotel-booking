@@ -3,6 +3,8 @@ import usersModel from '@/database/users/users.model';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export const POST = async (request) => {
 
     const { fname, lname, email, password } = await request.json();
