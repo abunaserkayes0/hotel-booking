@@ -30,11 +30,17 @@ const SocialLogins = ({ mode }) => {
       <div className="text-center text-xs text-gray-500">
         or{" "}
         {mode === "login" ? (
-          <Link className="underline" href="/signup">
+          <Link
+            className="underline"
+            href="https://hotel-booking-peach-gamma.vercel.app/signup"
+          >
             SignUp
           </Link>
         ) : (
-          <Link className="underline" href="/login">
+          <Link
+            className="underline"
+            href="https://hotel-booking-peach-gamma.vercel.app/login"
+          >
             Login
           </Link>
         )}{" "}
